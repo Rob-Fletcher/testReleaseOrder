@@ -35,5 +35,5 @@ jobs:
         pip install setuptools wheel twine
         python setup.py bdist_wheel
         twine check
-        twine upload dist/*
+        twine upload --repository testpypi dist/*
     
