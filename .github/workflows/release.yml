@@ -19,7 +19,9 @@ jobs:
         echo "GITHUB_HEAD_REF: $GITHUB_REF"
     - name: Update version number
       run: |
-        python .github/workflows/update_version.py --file test_package/__init__.py --version 0.0.1a2
+        python .github/workflows/update_version.py --file test_package/__init__.py --version $GITHUB_REF
+        git config --global user.email "rfletcher@seerai.space"
+        git config --global user.name "rob fletcher"
         git add test_package/__init__.py
         git commit -m "Automatic update of version number"
         git push
