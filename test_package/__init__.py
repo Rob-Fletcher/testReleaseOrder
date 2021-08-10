@@ -1,5 +1,5 @@
 from test_package import main
 
-__version__ = "0.0.1a8"
+__version__ = '0.0.2'
 
 __all__ = ["main"]
