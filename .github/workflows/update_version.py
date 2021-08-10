@@ -5,7 +5,8 @@ import fileinput
 def main(args):
     print(f"Got version: {args.version}")
     print(f"Got file: {args.file}")
-    args.version = args.version.replace('refs/tags/', '')
+    args.version = args.version.replace('refs/tags/v', '')
+    args.version = args.version.lstrip('v')
     with fileinput.input(args.file, inplace=True) as f:
         for line in f:
             if line.startswith("__version__"):
