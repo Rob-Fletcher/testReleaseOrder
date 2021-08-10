@@ -1,2 +1,2 @@
 def main():
-    print("do nothing")
+    print("do something")
