@@ -10,7 +10,7 @@ def main(args):
     with fileinput.input(args.file, inplace=True) as f:
         for line in f:
             if line.startswith("__version__"):
-                print(f'__version__ = "{args.version}"')
+                print(f"__version__ = '{args.version}'")
             else:
                 print(line.rstrip())
         
