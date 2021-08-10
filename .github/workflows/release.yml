@@ -1,0 +1,37 @@
+name: release
+
+on:
+  release:
+    types: [created]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: "3.8"
+    - name: Print refs
+      run: |
+        echo "GITHUB_REF: $GITHUB_REF"
+        echo "GITHUB_HEAD_REF: $GITHUB_REF"
+    - name: Update version number
+      run: |
+        python .github/workflows/update_version.py --file test_package/__init__.py --version 0.0.1a2
+        git add test_package/__init__.py
+        git commit -m "Automatic update of version number"
+        git push
+
+    # - name: Upload to test pypi
+    #   env:
+    #     TWINE_USERNAME: "__token__"
+    #     TWINE_PASSWORD: ${{ secrets.TEST_PYPI }}
+    #   run: |
+    #     python -m pip install --upgrade pip
+    #     pip install setuptools wheel twine
+    #     python setup.py bdist_wheel
+    #     twine check
+    #     twine upload dist/*
+    
