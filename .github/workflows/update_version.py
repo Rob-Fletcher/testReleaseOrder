@@ -11,7 +11,7 @@ def main(args):
             if line.startswith("__version__"):
                 print(f'__version__ = "{args.version}"')
             else:
-                print(line)
+                print(line.rstrip())
         
     return
 
